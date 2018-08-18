@@ -1,0 +1,22 @@
+<?php
+
+namespace bemacash;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Pedido extends Model {
+
+    protected $fillable = [
+        'nome', 'numeroPedido', 'estado',
+    ];
+
+    public function detalhePedido() {
+
+        return $this->belongsTo('\bemacash\DetalhePedido');
+    }
+
+    public function kits() {
+        return $this->belongsToMany('\bemacash\Kit', 'item', 'pedido_id', 'kit_id');
+    }
+
+}

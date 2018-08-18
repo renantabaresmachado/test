@@ -18,7 +18,9 @@ class CreatePedidosTable extends Migration
             $table->string('nome');
             $table->string('numeroPedido');
             $table->string('estado');
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

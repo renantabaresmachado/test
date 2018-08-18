@@ -18,5 +18,8 @@ class Pedido extends Model {
     public function kits() {
         return $this->belongsToMany('\bemacash\Kit', 'item', 'pedido_id', 'kit_id');
     }
+    public function user() {
+        return $this->hasOne('\bemacash\User', 'foreign_key');
+    }
 
 }

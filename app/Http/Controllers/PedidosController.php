@@ -5,17 +5,16 @@ namespace bemacash\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PedidosController extends Controller
-{
+class PedidosController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $peds=\bemacash\Pedido::where('user_id', Auth::user()->id)->get();
-                
+    public function index() {
+        $peds = \bemacash\Pedido::where('user_id', Auth::user()->id)->get();
+
         return view('Pedidos')->with('pedidos', $peds);
     }
 
@@ -24,8 +23,7 @@ class PedidosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -35,8 +33,7 @@ class PedidosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -46,9 +43,35 @@ class PedidosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id) {
+
+        $retorno;
+        $ped = \bemacash\Pedido::where('id', $id)->first();
+
+        /* formatando retorno para o pedido */
+        $kits = $ped->kits;
+        for ($i = 0; $i < count($kits); $i++) {
+            $kits[$i]->componentes = $ped->kits[$i]->componentes;
+        }
+
+        for ($i = 0; $i < count($kits); $i++) {
+            $kits[$i]->licencas = $ped->kits[$i]->licencas;
+        }
+
+        $retorno['kits'] = $kits;
+        $detalhe = $ped->detalhePedido;
+        $detalhe['endereco'] = $ped->detalhePedido->endereco;
+       
+        $hist = $ped->detalhePedido->historicos;
+        for ($i = 0; $i < count($hist); $i++) {
+            $hist[$i]->user = $ped->detalhePedido->historicos[$i]->user;
+        }
+        $detalhe['historicos'] = $hist;
+        $retorno['detalhepedido'] = $detalhe;
+    
+
+       
+        return response()->json($retorno);
     }
 
     /**
@@ -57,8 +80,7 @@ class PedidosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -69,8 +91,7 @@ class PedidosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -80,8 +101,8 @@ class PedidosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

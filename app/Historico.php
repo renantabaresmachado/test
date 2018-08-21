@@ -7,14 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Historico extends Model {
 
     protected $fillable = [
-        'descricao', 
+        'descricao',
     ];
 
-    public function user() {
-        return $this->hasOne('\bemacash\User', 'foreign_key');
-    }
     public function detalhePedido() {
-        return $this->hasOne('\bemacash\DetalhePedido', 'foreign_key');
+        return $this->belongsTo('\bemacash\DetalhePedido');
     }
+
+    public function user() {
+        return $this->belongsTo('\bemacash\User');
+    }
+    
+    
 
 }

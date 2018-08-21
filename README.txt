@@ -1,0 +1,35 @@
+#RESOURCES
+*PHP7
+*COMPOSER
+*LARAVEL 5.6
+*MYSQL
+*GIT BASH
+
+
+#STEPS TO FOLLOW
+*CRIAR O BANCO DE DADOS COM O NOME 'bemacash'
+*CONFIGURAR O ARQUIVO /.env{
+12-DB_USERNAME=[usuário do Mysql],
+13-DB_PASSWORD=[senha do mysql]
+
+*EXECUTAR AS MIGRATIONS COMANDO("php artisan migrate")
+
+*EXECUTAR TESTES UNITÁRIOS OU IMPORTAR DUMP \DOCUMENTOS
+ps: UTILIZEI O FLUXO DOS TESTE UNITÁRIOS PARA POPULAR O BANCO E DADOS.
+
+#STEPS TO FOLLOW TESTING:
+*RODAR TESTES UNITÁRIOS NO DIRETÓRIO DA APLICAÇÃO NO GIT BASH DIGITE("vendor/bin/phpunit")
+
+#STEPS TO RUN AND ACCESS THE APPLICATION
+*RODAR APP NO DIRETÓRIO DA APLICAÇÃO NO GIT BASH DIGITE("php artisan serve")
+*acessar no navegador o caminho http://localhost:8000
+*clicar em login e inserir os dados:
+
+usuario:"charles@email.com"
+senha: 654321
+
+*CLICAR EM "Pedidos"
+
+end
+
+  

@@ -10,8 +10,8 @@ class Endereco extends Model
         'logradouro', 'bairro', 'cidade', 'estado', 'pais',
         'cep', 'numero', 'complemento',
     ];
-    public function pedido() {
-        return $this->hasOne('\bemacash\DetalhePedido', 'foreign_key');
+    public function detalhePedido() {
+        return $this->belongsTo('\bemacash\DetalhePedido');
     }
 
 }

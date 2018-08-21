@@ -26,4 +26,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+     public function historico() {
+         
+         return $this->hasmany('\bemacash\Historico');
+        
+    }
 }

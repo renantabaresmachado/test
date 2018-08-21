@@ -11,13 +11,14 @@ class Pedido extends Model {
     ];
 
     public function detalhePedido() {
-
-        return $this->belongsTo('\bemacash\DetalhePedido');
+        
+        return $this->hasOne('\bemacash\DetalhePedido', 'pedido_id');
     }
 
     public function kits() {
         return $this->belongsToMany('\bemacash\Kit', 'item', 'pedido_id', 'kit_id');
     }
+
     public function user() {
         return $this->hasOne('\bemacash\User', 'foreign_key');
     }
